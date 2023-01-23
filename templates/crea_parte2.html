@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <script src="{{url_for('static', filename='scripts/showHideElement.js')}}"></script>
+    </head>
+    <body onload="editRadioForm(['asseX','asseY1','asseY2'])">
+        <h1>Creazione grafico pt2</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
+            <div id="titolo" class="titolo">
+                {{form.title}}
+            </div>
+            <div id="colonne">
+                {{form.cols.label}}
+                {{form.cols(**{"onchange":"editRadioForm(['asseX','asseY1','asseY2'])", "class":"col"})}}
+                <span id="2y-span">
+                    {{form.y2(**{"onchange":"toggleDisplay(document.getElementById('asse2y'))"})}}
+                </span>
+            </div>
+            <div id="assi">
+                <span>
+                    {{form.asseX.label}} {{form.asseX}}
+                    {{form.asseY1.label}} {{form.asseY1}}
+                </span>
+                <span id="asse2y" style="display: none">
+                    {{form.asseY2.label}} {{form.asseY2}}
+                </span>
+            </div>
+            <div id="colori">
+                {{form.color.label}} {{form.color}}
+            </div>
+            {{form.submit(class="form-submit")}}
+        </form>
+        {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </body>
+    <script>
+        function getInputTags(id){
+            let doc = document.getElementById(id).children;
+            let inputs = []
+            for(el of doc){
+                for(ch of el.children){
+                    if(ch.tagName == "INPUT")
+                        inputs.push(ch)
+                }
+            }
+            return inputs
+        }
+
+        function checkSelectedCols(){
+            let cols = getInputTags("cols")
+            let selectedCols = []
+            for(el of cols){
+                if(el.checked){
+                    selectedCols.push(el.value)
+                }
+            }
+            return selectedCols
+        }
+
+        function editRadioForm(ids){
+            for(id of ids){
+                let cols = getInputTags(id)
+                let selectedCols = checkSelectedCols()
+                for(el of cols){
+                    console.log(!el.value in selectedCols)
+                    if(!selectedCols.includes(el.value))
+                        hideElement(el.parentNode)
+                    else
+                        showElement(el.parentNode)
+                }
+            }
+        }
+    </script>
+</html>

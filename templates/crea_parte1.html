@@ -1,0 +1,28 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Carica i dati</h1>
+        <div class="graphType">
+            <h3>Seleziona il tipo di grafico</h3>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{form.hidden_tag()}}
+
+                {{ form.graphType.label(class="form-control-label") }}
+                {{ form.graphType(class="form-control form-control-lg is-invalid", **{"onchange":"alert(this.value)"} )}}
+                
+                <div class="CartesianForm">
+                    {{form.data_file()}}
+                    {{form.submit(class="form-submit")}}
+                </div>
+            </form>
+            {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+    </body>
+</html>

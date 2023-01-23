@@ -1,0 +1,12 @@
+{% macro showGrafMenu(titles)%}
+    {% for title in titles %}
+    <div class="graf-div graf-button div-{{title}}">
+        <span  class="graf graf-button-title">{{title}}</span>
+        
+        <a href="{{ url_for('visualizza_grafico') }}">
+            <button class="graf {{title}}" value={{title}}>Visualizza</button>
+        </a>
+        <button class="graf {{title}}" value={{title}}-del>Elimina</button>
+    </div>
+    {% endfor %}
+{% endmacro %}
