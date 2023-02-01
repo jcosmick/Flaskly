@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, FileField, RadioField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, InputRequired, Regexp, Optional
-from wtforms.widgets.html5 import ColorInput
+from wtforms.widgets import ColorInput
 from wtforms.widgets import CheckboxInput, ListWidget
 
 class CreaGraph1(FlaskForm):
@@ -45,26 +45,23 @@ class CreaGraph2(FlaskForm):
         if bool(self.y2.data):
             if self.asseY2.data == "None":
                 return False
+            else:
+                return True
+        else:
+            return True
 
     def max_cols_selected(self):
         #Se il numero di scelte è maggiore a tre ritorno False (la validazion non è andata a buon fine)
+        print(len(self.cols.data) > 3)
         if len(self.cols.data) > 3:
             self.cols.errors.append("Non puoi selezionare più di 3 colonne")
             return False
+        else:
+            return True
 
     def validate_on_submit(self):
         #Eseguo il normale controllo
-        rv = super().validate_on_submit()
-
-        #Eseguo i controlli custom
-        rv = self.y2_checked_not_null()
-        rv = self.max_cols_selected()
-
-        #Se la validazione non va a buon fine ritorno False
-        if not rv:
-            return False
-
-        return True
+        return super().validate_on_submit() and self.y2_checked_not_null() and self.max_cols_selected()
 
 
 

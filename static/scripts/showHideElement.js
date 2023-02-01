@@ -2,7 +2,7 @@ function hideElement(el){
     el.style.display = "none"
 }
 
-function showElementBlock(el){
+function showElement(el){
     el.style.display = "block"
 }
 
