@@ -15,14 +15,16 @@ app.config['UPLOAD_FODLER'] = UPLOAD_FOLDER
 
 @app.route("/home")
 def home():
-    titles = []
+    grafs = []
     for fileName in os.listdir(USER_DATA):
+        graf = {}
         if fileName.endswith(".json"):
+            graf.update({"fileName":fileName})
             fileName = '/'+fileName
             file = open(USER_DATA + fileName)
-            titles.append(json.load(file)["title"])
-    titles.sort()
-    return render_template('home.html', titles= titles)
+            graf.update({"title":json.load(file)["title"]})
+            grafs.append(graf)
+    return render_template('home.html', grafs = grafs)
 
 @app.route("/c1", methods=['GET', 'POST'])
 def creation_part1():
