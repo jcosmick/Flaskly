@@ -1,7 +1,7 @@
 from flask import Flask, flash, request, redirect, session, render_template
 import os
 from werkzeug.utils import secure_filename
-from forms import CreaGraph1, CreaGraph2
+from forms import  *
 import pandas as pd
 import json
 from utility_functions import *
@@ -78,28 +78,38 @@ def creation_part2():
     form.y2.data = None
     return render_template('crea_parte2.html', form = form, col = colonne)
 
-@app.route('/v', methods=["GET", "POST"])
-def visualizza_grafico():
+@app.route('/v/<file>', methods=["GET", "POST"])
+def visualizza_grafico(file):
 
     df = None
     for fileName in os.listdir(USER_DATA):
-        if fileName == "wnac.json":
+        if fileName == file:
             fileName = '/'+fileName
             file = open(USER_DATA + fileName)
             jsonData = json.load(file)
             df = pd.DataFrame(jsonData["asseXData"], jsonData["asseY1Data"])
 
     graphJSON = json.dumps(plot_graf_2y(df[0],
-                                        "Giorno",
+                                        jsonData["asseX"],
                                         [df.index],
                                         ["Scatter"],
                                         ["pioggia"],
-                                        "Pioggia",
-                                        "Titolone",
+                                        jsonData["asseY1"],
+                                        jsonData["title"],
                                         [False]),
                             cls=plotly.utils.PlotlyJSONEncoder)
     
     return render_template('visualizza.html', graphJSON = graphJSON)
+
+@app.route('/d/<file>', methods=["GET", "POST"])
+def elimina_grafico(file):
+
+    filePath = USER_DATA+'/'+file
+    if os.path.exists(filePath):
+        os.remove(filePath)
+    
+    return redirect('/home')
+
 
 if __name__=='__main__':
    app.run()

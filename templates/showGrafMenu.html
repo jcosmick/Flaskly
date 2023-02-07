@@ -1,11 +1,19 @@
 {% macro showGrafMenu(grafs)%}
+<!--Utilizzo la class name 'graf-div' per selezionare i div da nascondere/visualizzare durante la ricerca-->
     {% for graf in grafs %}
     <div class="graf-div graf-button div-{{title}}">
         <span  class="graf graf-button-title">{{graf['title']}}</span>
-        <a href="{{ url_for('visualizza_grafico') }}">
-            <button type="button" class="graf {{graf['title']}}" value={{graf['fileName']}}>Visualizza</button>
-        </a>
-        <button class="graf {{graf['title']}}" value={{graf['title']}}-del>Elimina</button>
+        <button type="button" 
+                class="graf {{graf['title']}}" 
+                onclick="window.location='{{url_for('visualizza_grafico', file=graf['fileName'])}}';">
+            Visualizza
+        </button>
+
+        <button type="button"
+                class="graf {{graf['title']}}" 
+                onclick="window.location='{{url_for('elimina_grafico', file=graf['fileName'])}}';">
+            Elimina
+        </button>
     </div>
     {% endfor %}
 {% endmacro %}

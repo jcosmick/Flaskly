@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, FileField, RadioField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, InputRequired, Regexp, Optional
-from wtforms.widgets import ColorInput
-from wtforms.widgets import CheckboxInput, ListWidget
+from wtforms.widgets import  CheckboxInput, ListWidget
+from wtforms.widgets.html5 import ColorInput
 
 class CreaGraph1(FlaskForm):
     graphType = SelectField('Tipo grafico', 
@@ -37,7 +37,7 @@ class CreaGraph2(FlaskForm):
                         validators=[InputRequired(), DataRequired()])
     asseY2 = RadioField('Asse Y2',validators=[Optional()])
     color = StringField(widget=ColorInput())
-    submit = SubmitField("Salva")
+    submit = SubmitField("Save")
 
     def y2_checked_not_null(self):
         #Se è stata aggiunta una seconda asse y viene eseguito il controllo:

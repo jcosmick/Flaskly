@@ -7,7 +7,7 @@
         {% from "showGrafMenu.html" import showGrafMenu with context %}
         <h1>Home</h1>
         <input type="search" name="ricerca" id="ricerca" class="ricerca bar" oninput="search(this.value)">
-        <form>
+        <form method="POST" action="" enctype="multipart/form-data">
             <div id="grafici">
                 <!--
                     Utilizzo la class name 'graf-div' per selezionare i div 
