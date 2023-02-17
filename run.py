@@ -59,8 +59,8 @@ def creation_part2():
     form.asseY2.choices = form_choices
 
     if request.method == 'POST' and form.validate_on_submit():
-        asseY2Data = "None"
-        if form.asseY2.data != "None":
+        asseY2Data = None
+        if form.asseY2.data != None:
             asseY2Data = df[form.asseY2.data].to_list()
 
         data_to_write = {"title": form.title.data,
@@ -90,17 +90,19 @@ def visualizza_grafico(file):
             file = open(USER_DATA + fileName)
             jsonData = json.load(file)
             df = pd.DataFrame(jsonData["asseXData"], jsonData["asseY1Data"])
+            break
 
     if jsonData["type"] != "Pie":
-        graphJSON = json.dumps(plot_graf_2y(df[0],
-                                            jsonData["asseX"],
-                                            [df.index],
-                                            [jsonData["type"]],
-                                            [jsonData["asseY1"]],
-                                            jsonData["asseY1"],
-                                            jsonData["title"],
-                                            [False]),
+        graphJSON = json.dumps(plot_graf_2y(x_data= df[0],
+                                            x_titolo= jsonData["asseX"],
+                                            y_data = [df.index],
+                                            y_tipo= [jsonData["type"]] if jsonData["asseY2"] == None else [jsonData["type"], jsonData["type"]],
+                                            y_nome= [jsonData["asseY1"]] if jsonData["asseY2"] == None else [jsonData["asseY1"], jsonData["asseY2"]],
+                                            y_titolo= jsonData["asseY1"],
+                                            titolo= jsonData["title"],
+                                            secondary= [False]),
                                 cls=plotly.utils.PlotlyJSONEncoder)
+        
     #DA FARE NON FUNZIONA IL GRAFICO A TORTA NON PROVARE AD UTILIZZARLO
     else:
         graphJSON = json.dumps(plot_pie(df[0],

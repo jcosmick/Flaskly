@@ -7,7 +7,10 @@ from wtforms.widgets import ColorInput
 class CreaGraph1(FlaskForm):
     graphType = SelectField('Tipo grafico', 
                             coerce=str, 
-                            choices=[("Pie","Pie"),("Scatter","Scatter"),("Bar","Bar")],
+                            choices=[("Scatter","Scatter"),
+                                     ("Pie","Pie"),
+                                     ("Bar","Bar")
+                                    ],
                             validators= [InputRequired()])
     data_file = FileField('Csv file', validators= [DataRequired()])
     submit = SubmitField("Crea")
@@ -40,19 +43,20 @@ class CreaGraph2(FlaskForm):
     submit = SubmitField("Save")
 
     def y2_checked_not_null(self):
-        #Se è stata aggiunta una seconda asse y viene eseguito il controllo:
-        #   La selezione della colonna per la seconda Y non deve essere nulla
+        """Se è stata aggiunta una seconda asse y viene eseguito il controllo:
+           La selezione della colonna per la seconda Y non deve essere nulla"""
         if bool(self.y2.data):
-            if self.asseY2.data == "None":
+            if self.asseY2.data == None:
+                self.asseY2.errors.append("Seleziona una colonna per il secondo asse Y")
                 return False
             else:
                 return True
         else:
+            self.asseY2.data = None
             return True
 
     def max_cols_selected(self):
         #Se il numero di scelte è maggiore a tre ritorno False (la validazion non è andata a buon fine)
-        print(len(self.cols.data) > 3)
         if len(self.cols.data) > 3:
             self.cols.errors.append("Non puoi selezionare più di 3 colonne")
             return False
@@ -62,7 +66,3 @@ class CreaGraph2(FlaskForm):
     def validate_on_submit(self):
         #Eseguo il normale controllo
         return super().validate_on_submit() and self.y2_checked_not_null() and self.max_cols_selected()
-
-
-
-

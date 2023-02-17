@@ -8,7 +8,7 @@
                 {{form.hidden_tag()}}
 
                 {{ form.graphType.label(class="form-control-label") }}
-                {{ form.graphType(class="form-control form-control-lg is-invalid", **{"onchange":"alert(this.value)"} )}}
+                {{ form.graphType(class="form-control form-control-lg is-invalid")}}
                 
                 <div class="CartesianForm">
                     {{form.data_file()}}
