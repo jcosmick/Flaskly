@@ -71,7 +71,8 @@ def creation_part2():
                         "asseY1": form.asseY1.data,
                         "asseY1Data": df[form.asseY1.data].to_list(),
                         "asseY2": form.asseY2.data,
-                        "asseY2Data": asseY2Data
+                        "asseY2Data": asseY2Data,
+                        "secondary": form.secondary.data
                         }
                 #USER_DATA+"/"+session["username"]+"_"+get_random_string(4)+".json"
         with open(USER_DATA+"/"+get_random_string(4)+".json", "w") as outfile:
@@ -100,7 +101,7 @@ def visualizza_grafico(file):
                                             y_nome= [jsonData["asseY1"]] if jsonData["asseY2"] == None else [jsonData["asseY1"], jsonData["asseY2"]],
                                             y_titolo= jsonData["asseY1"],
                                             titolo= jsonData["title"],
-                                            secondary= [False]),
+                                            secondary= [False,jsonData["secondary"]]),
                                 cls=plotly.utils.PlotlyJSONEncoder)
         
     #DA FARE NON FUNZIONA IL GRAFICO A TORTA NON PROVARE AD UTILIZZARLO

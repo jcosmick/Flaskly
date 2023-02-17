@@ -13,6 +13,7 @@
                 {{form.cols.label}}
                 {{form.cols(**{"onchange":"editRadioForm(['asseX','asseY1','asseY2'])", "class":"col"})}}
                 <span id="2y-span">
+                    {{form.y2.label}}
                     {{form.y2(**{"onchange":"toggleDisplay(document.getElementById('asse2y'))"})}}
                 </span>
             </div>
@@ -22,7 +23,12 @@
                     {{form.asseY1.label}} {{form.asseY1}}
                 </span>
                 <span id="asse2y" style="display: none">
-                    {{form.asseY2.label}} {{form.asseY2}}
+                    {{form.asseY2.label}} 
+                    <span id="secondary">
+                        {{form.secondary.label}}
+                        {{form.secondary}}
+                    </span>
+                    {{form.asseY2}}
                 </span>
             </div>
             <div id="colori">

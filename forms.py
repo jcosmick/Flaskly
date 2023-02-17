@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, FileField, RadioField, SelectMultipleField
+from wtforms import StringField, SubmitField, SelectField, FileField, RadioField, SelectMultipleField, BooleanField
 from wtforms.validators import DataRequired, Length, InputRequired, Regexp, Optional
 from wtforms.widgets import  CheckboxInput, ListWidget
 from wtforms.widgets import ColorInput
@@ -27,25 +27,27 @@ class CreaGraph2(FlaskForm):
         option_widget=CheckboxInput(),
         widget=ListWidget(prefix_label=True))
 
-    y2 = SelectMultipleField(
-        'Doppio asse Y',
-        option_widget=CheckboxInput(),
-        widget=ListWidget(prefix_label=True),
-        coerce=int,
-        choices=[(1, "Doppio asse Y")])
+    y2 = BooleanField(
+        'Doppio asse Y'
+        )
     
     asseX = RadioField('Asse X',
                         validators=[InputRequired(), DataRequired()])
     asseY1 = RadioField('Asse Y',
                         validators=[InputRequired(), DataRequired()])
     asseY2 = RadioField('Asse Y2',validators=[Optional()])
+
+    secondary = BooleanField(
+        'Asse y secondaria'
+        )
+
     color = StringField(widget=ColorInput())
     submit = SubmitField("Save")
 
     def y2_checked_not_null(self):
         """Se è stata aggiunta una seconda asse y viene eseguito il controllo:
            La selezione della colonna per la seconda Y non deve essere nulla"""
-        if bool(self.y2.data):
+        if self.y2.data:
             if self.asseY2.data == None:
                 self.asseY2.errors.append("Seleziona una colonna per il secondo asse Y")
                 return False
