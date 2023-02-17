@@ -35,7 +35,7 @@ def creation_part1():
         if file and allowed_file(file.filename):
             filename= secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
-            session['messages'] = filename
+            session['messages'] = [filename, form.graphType.data]
             return redirect('c2')
         flash("File non supportato", "error")
 
@@ -45,7 +45,8 @@ def creation_part1():
 def creation_part2():
     form = CreaGraph2()
 
-    filename = session['messages']
+    filename = session['messages'][0]
+    graphType = session['messages'][1]
     df = pd.read_csv(UPLOAD_FOLDER+"/"+filename)
     colonne = df.columns.to_list()
 
@@ -64,6 +65,7 @@ def creation_part2():
 
         data_to_write = {"title": form.title.data,
                         "columns": form.cols.data,
+                        "type": graphType,
                         "asseX": form.asseX.data,
                         "asseXData": df[form.asseX.data].to_list(),
                         "asseY1": form.asseY1.data,
@@ -89,15 +91,23 @@ def visualizza_grafico(file):
             jsonData = json.load(file)
             df = pd.DataFrame(jsonData["asseXData"], jsonData["asseY1Data"])
 
-    graphJSON = json.dumps(plot_graf_2y(df[0],
-                                        jsonData["asseX"],
-                                        [df.index],
-                                        ["Scatter"],
-                                        ["pioggia"],
-                                        jsonData["asseY1"],
-                                        jsonData["title"],
-                                        [False]),
-                            cls=plotly.utils.PlotlyJSONEncoder)
+    if jsonData["type"] != "Pie":
+        graphJSON = json.dumps(plot_graf_2y(df[0],
+                                            jsonData["asseX"],
+                                            [df.index],
+                                            [jsonData["type"]],
+                                            [jsonData["asseY1"]],
+                                            jsonData["asseY1"],
+                                            jsonData["title"],
+                                            [False]),
+                                cls=plotly.utils.PlotlyJSONEncoder)
+    #DA FARE NON FUNZIONA IL GRAFICO A TORTA NON PROVARE AD UTILIZZARLO
+    else:
+        graphJSON = json.dumps(plot_pie(df[0],
+                                            jsonData["asseX"],
+                                            jsonData["asseY1"],
+                                            jsonData["title"]),
+                                cls=plotly.utils.PlotlyJSONEncoder)
     
     return render_template('visualizza.html', graphJSON = graphJSON)
 
@@ -112,4 +122,4 @@ def elimina_grafico(file):
 
 
 if __name__=='__main__':
-   app.run()
+   app.run(debug=DEBUG)

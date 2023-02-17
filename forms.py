@@ -2,12 +2,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, FileField, RadioField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, InputRequired, Regexp, Optional
 from wtforms.widgets import  CheckboxInput, ListWidget
-from wtforms.widgets.html5 import ColorInput
+from wtforms.widgets import ColorInput
 
 class CreaGraph1(FlaskForm):
     graphType = SelectField('Tipo grafico', 
                             coerce=str, 
-                            choices=[("Pie","Pie"),("Cartesian","Cartesian")],
+                            choices=[("Pie","Pie"),("Scatter","Scatter"),("Bar","Bar")],
                             validators= [InputRequired()])
     data_file = FileField('Csv file', validators= [DataRequired()])
     submit = SubmitField("Crea")
