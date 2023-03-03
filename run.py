@@ -77,6 +77,7 @@ def creation_part2():
                 #USER_DATA+"/"+session["username"]+"_"+get_random_string(4)+".json"
         with open(USER_DATA+"/"+get_random_string(4)+".json", "w") as outfile:
             json.dump(data_to_write, outfile)
+        delete_file_from_path(UPLOAD_FOLDER +'/'+ filename)
         return redirect("/home")
     form.y2.data = None
     return render_template('crea_parte2.html', form = form, col = colonne)
@@ -90,19 +91,45 @@ def visualizza_grafico(file):
             fileName = '/'+fileName
             file = open(USER_DATA + fileName)
             jsonData = json.load(file)
-            df = pd.DataFrame(jsonData["asseXData"], jsonData["asseY1Data"])
             break
 
     if jsonData["type"] != "Pie":
-        graphJSON = json.dumps(plot_graf_2y(x_data= df[0],
-                                            x_titolo= jsonData["asseX"],
-                                            y_data = [df.index],
-                                            y_tipo= [jsonData["type"]] if jsonData["asseY2"] == None else [jsonData["type"], jsonData["type"]],
-                                            y_nome= [jsonData["asseY1"]] if jsonData["asseY2"] == None else [jsonData["asseY1"], jsonData["asseY2"]],
-                                            y_titolo= jsonData["asseY1"],
-                                            titolo= jsonData["title"],
-                                            secondary= [False,jsonData["secondary"]]),
-                                cls=plotly.utils.PlotlyJSONEncoder)
+
+        if jsonData["asseY2"] == None:
+            data = {jsonData["asseX"] : jsonData["asseXData"], jsonData["asseY1"] : jsonData["asseY1Data"]}
+            df = pd.DataFrame(data)
+            x_data= df[jsonData["asseX"]]
+            x_titolo= jsonData["asseX"]
+            y_data = [df[jsonData["asseY1"]]]
+            y_tipo= [jsonData["type"]]
+            y_nome= [jsonData["asseY1"]]
+            y_titolo= jsonData["asseY1"]
+            titolo= jsonData["title"]
+            secondary= [False]
+        else:
+            data = {jsonData["asseX"] : jsonData["asseXData"], jsonData["asseY1"] : jsonData["asseY1Data"], jsonData["asseY2"] : jsonData["asseY2Data"]}
+            df = pd.DataFrame(data)
+            x_data= df[jsonData["asseX"]]
+            x_titolo= jsonData["asseX"]
+            y_data = [df[jsonData["asseY1"]], df[jsonData["asseY2"]]]
+            y_tipo= [jsonData["type"], jsonData["type"]]
+            y_nome= [jsonData["asseY1"], jsonData["asseY2"]]
+            y_titolo= [jsonData["asseY1"], jsonData["asseY2"]]
+            titolo= jsonData["title"]
+            secondary= [False, jsonData["secondary"]]
+            
+        graphJSON = json.dumps(plot_graf_2y(x_data= x_data,
+                                    x_titolo= x_titolo,
+                                    y_data = y_data,
+                                    y_tipo= y_tipo,
+                                    y_nome= y_nome,
+                                    y_titolo= y_titolo,
+                                    titolo= titolo,
+                                    secondary= secondary),
+            cls=plotly.utils.PlotlyJSONEncoder)
+        
+
+
         
     #DA FARE NON FUNZIONA IL GRAFICO A TORTA NON PROVARE AD UTILIZZARLO
     else:
@@ -118,8 +145,7 @@ def visualizza_grafico(file):
 def elimina_grafico(file):
 
     filePath = USER_DATA+'/'+file
-    if os.path.exists(filePath):
-        os.remove(filePath)
+    delete_file_from_path(filePath)
     
     return redirect('/home')
 

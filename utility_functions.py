@@ -16,5 +16,6 @@ def get_random_string(length):
 def get_file_path(path, fileName):
     return path+"/"+fileName
 
-def delete_json_from_path(path):
-    os.remove(path)
+def delete_file_from_path(path):
+    if os.path.exists(path):
+        os.remove(path)
