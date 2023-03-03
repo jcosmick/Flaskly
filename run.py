@@ -72,7 +72,8 @@ def creation_part2():
                         "asseY1Data": df[form.asseY1.data].to_list(),
                         "asseY2": form.asseY2.data,
                         "asseY2Data": asseY2Data,
-                        "secondary": form.secondary.data
+                        "secondary": form.secondary.data,
+                        "color": [form.colorY1.data, form.colorY1.data]
                         }
                 #USER_DATA+"/"+session["username"]+"_"+get_random_string(4)+".json"
         with open(USER_DATA+"/"+get_random_string(4)+".json", "w") as outfile:
@@ -106,6 +107,7 @@ def visualizza_grafico(file):
             y_titolo= jsonData["asseY1"]
             titolo= jsonData["title"]
             secondary= [False]
+            color = [[jsonData["color"][0]], [jsonData["color"][1]]]
         else:
             data = {jsonData["asseX"] : jsonData["asseXData"], jsonData["asseY1"] : jsonData["asseY1Data"], jsonData["asseY2"] : jsonData["asseY2Data"]}
             df = pd.DataFrame(data)
@@ -117,6 +119,7 @@ def visualizza_grafico(file):
             y_titolo= [jsonData["asseY1"], jsonData["asseY2"]]
             titolo= jsonData["title"]
             secondary= [False, jsonData["secondary"]]
+            color = [[jsonData["color"][0]], [jsonData["color"][1]]]
             
         graphJSON = json.dumps(plot_graf_2y(x_data= x_data,
                                     x_titolo= x_titolo,
@@ -125,7 +128,8 @@ def visualizza_grafico(file):
                                     y_nome= y_nome,
                                     y_titolo= y_titolo,
                                     titolo= titolo,
-                                    secondary= secondary),
+                                    secondary= secondary,
+                                    color= color),
             cls=plotly.utils.PlotlyJSONEncoder)
         
 

@@ -1,6 +1,7 @@
 <html>
     <head>
         <script src="{{url_for('static', filename='scripts/showHideElement.js')}}"></script>
+        <script src="{{url_for('static', filename='scripts/randomColor.js')}}"></script>
     </head>
     <body onload="editRadioForm(['asseX','asseY1','asseY2'])">
         <h1>Creazione grafico pt2</h1>
@@ -22,19 +23,20 @@
                     {{form.asseX.label}} {{form.asseX}}
                     {{form.graphTypeY1.label}} {{form.graphTypeY1}}
                     {{form.asseY1.label}} {{form.asseY1}}
+                    {{form.colorY1.label}} {{form.colorY1}}
+                    <input type="button" value="Random color" onclick="setColor('{{form.colorY1.id}}')">
                 </span>
                 <span id="asse2y" style="display: none">
+                    {{form.graphTypeY2.label}} {{form.graphTypeY2}}
                     {{form.asseY2.label}} 
                     <span id="secondary">
                         {{form.secondary.label}}
                         {{form.secondary}}
                     </span>
-                    {{form.graphTypeY2.label}} {{form.graphTypeY2}}
                     {{form.asseY2}}
+                    {{form.colorY2.label}} {{form.colorY2}}
+                    <input type="button" value="Random color" onclick="setColor('{{form.colorY2.id}}')">
                 </span>
-            </div>
-            <div id="colori">
-                {{form.color.label}} {{form.color}}
             </div>
             {{form.submit(class="form-submit")}}
         </form>

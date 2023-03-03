@@ -50,7 +50,8 @@ class CreaGraph2(FlaskForm):
         'Asse y secondaria'
         )
 
-    color = StringField(widget=ColorInput())
+    colorY1 = StringField("Colore: ",widget=ColorInput())
+    colorY2 = StringField("Colore: ",widget=ColorInput())
     submit = SubmitField("Save")
 
     def y2_checked_not_null(self):
