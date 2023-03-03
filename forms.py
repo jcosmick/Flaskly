@@ -7,9 +7,8 @@ from wtforms.widgets import ColorInput
 class CreaGraph1(FlaskForm):
     graphType = SelectField('Tipo grafico', 
                             coerce=str, 
-                            choices=[("Scatter","Scatter"),
-                                     ("Pie","Pie"),
-                                     ("Bar","Bar")
+                            choices=[("Cartesian","Cartesian"),
+                                     ("Pie","Pie")
                                     ],
                             validators= [InputRequired()])
     data_file = FileField('Csv file', validators= [DataRequired()])
@@ -33,8 +32,18 @@ class CreaGraph2(FlaskForm):
     
     asseX = RadioField('Asse X',
                         validators=[InputRequired(), DataRequired()])
+    graphTypeY1 = SelectField('Tipo grafico', 
+                        coerce=str, 
+                        choices=[("Scatter","Scatter"),
+                                    ("Bar","Bar")],
+                        validators= [InputRequired()])
     asseY1 = RadioField('Asse Y',
                         validators=[InputRequired(), DataRequired()])
+    graphTypeY2 = SelectField('Tipo grafico', 
+                    coerce=str, 
+                    choices=[("Scatter","Scatter"),
+                                ("Bar","Bar")],
+                    validators= [InputRequired()])
     asseY2 = RadioField('Asse Y2',validators=[Optional()])
 
     secondary = BooleanField(

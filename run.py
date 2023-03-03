@@ -65,7 +65,7 @@ def creation_part2():
 
         data_to_write = {"title": form.title.data,
                         "columns": form.cols.data,
-                        "type": graphType,
+                        "type": [form.graphTypeY1.data, form.graphTypeY2.data],
                         "asseX": form.asseX.data,
                         "asseXData": df[form.asseX.data].to_list(),
                         "asseY1": form.asseY1.data,
@@ -101,7 +101,7 @@ def visualizza_grafico(file):
             x_data= df[jsonData["asseX"]]
             x_titolo= jsonData["asseX"]
             y_data = [df[jsonData["asseY1"]]]
-            y_tipo= [jsonData["type"]]
+            y_tipo= [jsonData["type"][0]]
             y_nome= [jsonData["asseY1"]]
             y_titolo= jsonData["asseY1"]
             titolo= jsonData["title"]
@@ -112,7 +112,7 @@ def visualizza_grafico(file):
             x_data= df[jsonData["asseX"]]
             x_titolo= jsonData["asseX"]
             y_data = [df[jsonData["asseY1"]], df[jsonData["asseY2"]]]
-            y_tipo= [jsonData["type"], jsonData["type"]]
+            y_tipo= [jsonData["type"][0], jsonData["type"][1]]
             y_nome= [jsonData["asseY1"], jsonData["asseY2"]]
             y_titolo= [jsonData["asseY1"], jsonData["asseY2"]]
             titolo= jsonData["title"]
