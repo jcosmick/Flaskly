@@ -1,9 +1,85 @@
-.graf-button{
-    background-color: rgba(255, 206, 206, 0.897);
-    width: 200px;
-    height: 30px;
-    margin: 5px;
+body{
+    font-family: 'Poppins', sans-serif;
 }
-.graf-button:hover{
-    background-color: rgb(255, 152, 152);
+.ricerca{
+    color: rgb(0, 0, 0);  
+	text-align: left;
+	cursor: pointer;
+	width: 100%;         
+}
+
+.grafici{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+.graf-div{
+    background-color: rgba(206, 255, 210, 0.897);
+    border: #292929  solid .5px;
+    border-radius: 10px;
+    width: 300px;
+    height: 130px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.graf-div:hover{
+    background-color: rgb(161, 255, 152);
+}
+.graf-button-title{
+    text-align: center;
+}
+.graf-btn-view{
+    font-weight: 800;
+    font-size: 12px;
+    color: #000000;
+    background: linear-gradient(90deg, #00fcca 0%, #3773ff 100%);
+    padding: 10px 30px;
+    border: solid #212121 2px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 50px;
+    transition : 835ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.graf-btn-view:hover{
+    transition : 835ms;
+    padding: 10px 35px;
+    transform : translateY(-0px);
+    background: linear-gradient(90deg, #00fcca 0%, #3773ff 100%);
+    color: #000000;
+    border: solid 2px #00044d;
+}
+
+.graf-btn-delete{
+    font-weight: 800;
+    font-size: 12px;
+    color: #000000;
+    background: linear-gradient(90deg, #fc0000 0%, #ff0000 100%);
+    padding: 10px 30px;
+    border: solid #212121 2px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 50px;
+    transition : 835ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.graf-btn-delete:hover{
+    transition : 835ms;
+    padding: 10px 35px;
+    transform : translateY(-0px);
+    background: linear-gradient(90deg, #ff4141 0%, #ff4141 100%);
+    color: #000000;
+    border: solid 2px #00044d;
 }

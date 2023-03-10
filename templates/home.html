@@ -2,13 +2,15 @@
     <head>
         <title>Flaskly</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/homeStyle.css') }}">
-    </head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"></head>
     <body>
         {% from "showGrafMenu.html" import showGrafMenu with context %}
         <h1>Home</h1>
-        <input type="search" name="ricerca" id="ricerca" class="ricerca bar" oninput="search(this.value)">
+        <input type="search" name="ricerca" id="ricerca" class="ricerca bar" oninput="search(this.value)" placeholder="Cerca...">
         <form method="POST" action="" enctype="multipart/form-data">
-            <div id="grafici">
+            <div id="grafici" class="grafici">
                 <!--
                     Utilizzo la class name 'graf-div' per selezionare i div 
                     da nascondere/visualizzare durante la ricerca-->
