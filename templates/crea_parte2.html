@@ -9,43 +9,47 @@
     </head>
     <body onload="editRadioForm(['asseX','asseY1','asseY2'])">
         <h1>Creazione grafico pt2</h1>
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="" class="form" enctype="multipart/form-data">
             {{form.hidden_tag()}}
-            <div id="titolo" class="tit">
-                {{form.title(class="titolo")}}
+            <div class="div1">
+                <div id="titolo" class="tit">
+                    {{form.title(class="titolo")}}
+                </div>
+                <div id="colonne">
+                    {{form.cols.label}}
+                    {{form.cols(**{"onchange":"editRadioForm(['asseX','asseY1','asseY2'])", "class":"col"})}}
+                    <span id="2y-span">
+                        {{form.y2.label}}
+                        {{form.y2(**{"onchange":"toggleDisplay(document.getElementById('asse2y'))"})}}
+                    </span>
+                </div>
             </div>
-            <div id="colonne">
-                {{form.cols.label}}
-                {{form.cols(**{"onchange":"editRadioForm(['asseX','asseY1','asseY2'])", "class":"col"})}}
-                <span id="2y-span">
-                    {{form.y2.label}}
-                    {{form.y2(**{"onchange":"toggleDisplay(document.getElementById('asse2y'))"})}}
-                </span>
+
+            <div class="asseX">
+                {{form.asseX.label}} {{form.asseX}}
             </div>
-            <div id="assi">
-                <span>
-                    {{form.asseX.label}} {{form.asseX}}
-                    <div>
-                        {{form.graphTypeY1.label}} {{form.graphTypeY1}}
-                    </div>
-                    {{form.asseY1.label}} {{form.asseY1}}
-                    {{form.colorY1.label}} {{form.colorY1}}
-                    <input type="button" value="Random color" onclick="setColor('{{form.colorY1.id}}')">
-                </span>
-                <span id="asse2y" style="display: none">
-                    <div>
-                        {{form.graphTypeY2.label}} {{form.graphTypeY2}}
-                        <span id="secondary">
-                            {{form.secondary.label}}
-                            {{form.secondary}}
-                        </span>
-                    </div>
-                    {{form.asseY2.label}} 
-                    {{form.asseY2}}
-                    {{form.colorY2.label}} {{form.colorY2}}
-                    <input type="button" value="Random color" onclick="setColor('{{form.colorY2.id}}')">
-                </span>
+            <div class="asseY1">
+                <div>
+                    {{form.graphTypeY1.label}} {{form.graphTypeY1}}
+                </div>
+                {{form.asseY1.label}} {{form.asseY1}}
+                {{form.colorY1.label}} {{form.colorY1}}
+                <input type="button" value="Random color" onclick="setColor('{{form.colorY1.id}}')">
             </div>
+            <div id="asse2y" style="display: none" class="asseY2">
+                <div>
+                    {{form.graphTypeY2.label}} {{form.graphTypeY2}}
+                    <span id="secondary">
+                        {{form.secondary.label}}
+                        {{form.secondary}}
+                    </span>
+                </div>
+                {{form.asseY2.label}} 
+                {{form.asseY2}}
+                {{form.colorY2.label}} {{form.colorY2}}
+                <input type="button" value="Random color" onclick="setColor('{{form.colorY2.id}}')">
+            </div>
+
             {{form.submit(class="form-submit")}}
         </form>
         {% with messages = get_flashed_messages(category_filter=["error"]) %}

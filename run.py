@@ -107,7 +107,7 @@ def visualizza_grafico(file):
             y_titolo= jsonData["asseY1"]
             titolo= jsonData["title"]
             secondary= [False]
-            color = [[jsonData["color"][0]], [jsonData["color"][1]]]
+            color = jsonData["color"]
         else:
             data = {jsonData["asseX"] : jsonData["asseXData"], jsonData["asseY1"] : jsonData["asseY1Data"], jsonData["asseY2"] : jsonData["asseY2Data"]}
             df = pd.DataFrame(data)
@@ -119,8 +119,7 @@ def visualizza_grafico(file):
             y_titolo= [jsonData["asseY1"], jsonData["asseY2"]]
             titolo= jsonData["title"]
             secondary= [False, jsonData["secondary"]]
-            color = [[jsonData["color"][0]], [jsonData["color"][1]]]
-            
+            color = jsonData["color"]
         graphJSON = json.dumps(plot_graf_2y(x_data= x_data,
                                     x_titolo= x_titolo,
                                     y_data = y_data,
