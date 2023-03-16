@@ -25,18 +25,22 @@
             <div id="assi">
                 <span>
                     {{form.asseX.label}} {{form.asseX}}
-                    {{form.graphTypeY1.label}} {{form.graphTypeY1}}
+                    <div>
+                        {{form.graphTypeY1.label}} {{form.graphTypeY1}}
+                    </div>
                     {{form.asseY1.label}} {{form.asseY1}}
                     {{form.colorY1.label}} {{form.colorY1}}
                     <input type="button" value="Random color" onclick="setColor('{{form.colorY1.id}}')">
                 </span>
                 <span id="asse2y" style="display: none">
-                    {{form.graphTypeY2.label}} {{form.graphTypeY2}}
+                    <div>
+                        {{form.graphTypeY2.label}} {{form.graphTypeY2}}
+                        <span id="secondary">
+                            {{form.secondary.label}}
+                            {{form.secondary}}
+                        </span>
+                    </div>
                     {{form.asseY2.label}} 
-                    <span id="secondary">
-                        {{form.secondary.label}}
-                        {{form.secondary}}
-                    </span>
                     {{form.asseY2}}
                     {{form.colorY2.label}} {{form.colorY2}}
                     <input type="button" value="Random color" onclick="setColor('{{form.colorY2.id}}')">

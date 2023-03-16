@@ -52,7 +52,7 @@ class CreaGraph2(FlaskForm):
 
     colorY1 = StringField("Colore: ",widget=ColorInput())
     colorY2 = StringField("Colore: ",widget=ColorInput())
-    submit = SubmitField("Save")
+    submit = SubmitField("Salva")
 
     def y2_checked_not_null(self):
         """Se è stata aggiunta una seconda asse y viene eseguito il controllo:
