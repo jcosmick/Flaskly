@@ -2,13 +2,17 @@
     <head>
         <script src="{{url_for('static', filename='scripts/showHideElement.js')}}"></script>
         <script src="{{url_for('static', filename='scripts/randomColor.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/creaParte2Style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     </head>
     <body onload="editRadioForm(['asseX','asseY1','asseY2'])">
         <h1>Creazione grafico pt2</h1>
         <form method="POST" action="" enctype="multipart/form-data">
             {{form.hidden_tag()}}
-            <div id="titolo" class="titolo">
-                {{form.title}}
+            <div id="titolo" class="tit">
+                {{form.title(class="titolo")}}
             </div>
             <div id="colonne">
                 {{form.cols.label}}

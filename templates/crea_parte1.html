@@ -1,5 +1,10 @@
 <html>
-    <head></head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/creaParte1Style.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    </head>
     <body>
         <h1>Carica i dati</h1>
         <div class="graphType">
@@ -11,7 +16,7 @@
                 {{ form.graphType(class="form-control form-control-lg is-invalid")}}
                 
                 <div class="CartesianForm">
-                    {{form.data_file()}}
+                    {{form.data_file(class="file-input")}}
                     {{form.submit(class="form-submit")}}
                 </div>
             </form>

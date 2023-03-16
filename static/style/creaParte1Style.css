@@ -1,0 +1,42 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.file-input{
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 12px;
+    color: #000000;
+    background: linear-gradient(90deg, #00fcca 0%, #3773ff 100%);
+    padding: 10px 30px;
+    border: solid #212121 2px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 50px;
+    transition : 835ms;
+    transform: translateY(0);
+    align-items: center;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.form-submit{
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 12px;
+    color: #000000;
+    background: linear-gradient(90deg, #7eff89 0%, #00dd00  100%);
+    padding: 10px 30px;
+    border: solid #212121 2px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 50px;
+    transition : 835ms;
+    transform: translateY(0);
+    align-items: center;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+.form-submit:hover{
+    transition : 835ms;
+    background: linear-gradient(90deg, #61ff6f 0%, #3cff3c  100%);
+    color: #000000;
+    border: solid 2px #00044d;
+}
