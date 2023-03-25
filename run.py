@@ -155,3 +155,6 @@ def elimina_grafico(file):
 
 if __name__=='__main__':
    app.run(debug=DEBUG)
+
+# Siamo riusciti ad implementare i grafici, purtroppo quello a torta da ancora problemi, ed a visualizzarli salvando i dati in file json.
+# La cosa su cui dobbiamo lavorare è lo stile della pagina web.
