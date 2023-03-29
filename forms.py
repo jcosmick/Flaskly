@@ -20,14 +20,14 @@ class CreaGraph2(FlaskForm):
                                 Length(1,20), 
                                 DataRequired(),
                                 Regexp(r'^[\w.@+-]+$')],
-                                render_kw={"placeholder": "Titolo"})
+                                render_kw={"placeholder": "Inserisci il titolo del grafico..."})
     cols = SelectMultipleField(
-        'Colonne',
+        'Scegli le colonne:',
         option_widget=CheckboxInput(),
         widget=ListWidget(prefix_label=True))
 
     y2 = BooleanField(
-        'Doppio asse Y'
+        'Feature aggiuntiva'
         )
     
     asseX = RadioField('Asse X',
@@ -47,7 +47,7 @@ class CreaGraph2(FlaskForm):
     asseY2 = RadioField('Asse Y2',validators=[Optional()])
 
     secondary = BooleanField(
-        'Asse y secondaria'
+        'Asse Y secondaria'
         )
 
     colorY1 = StringField("Colore: ",widget=ColorInput())
