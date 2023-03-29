@@ -1,21 +1,75 @@
 body{
     font-family: 'Poppins', sans-serif;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
+
+.top-title{
+    display: grid;
+    grid-template-columns:  minmax(93px, 15%) 80%;
+    column-gap: 40px;
+    max-width: 100%;
+    background: linear-gradient(90deg, #7eff89 0%, #00dd00  100%);
+    overflow: hidden;
+    min-height: 50px;  
+    min-width: 0;
+    -moz-box-sizing:border-box; /* Firefox */
+    box-sizing:border-box; 
+}
+
+.back-arrow{
+    display: flex;
+    grid-column: 1/2;
+    justify-items: left;
+    align-items: center;
+    margin-right: 20px;
+    width: 50px;
+    padding:  15px;
+    background: linear-gradient(90deg, #00dd00, #7eff89 0%,   100%);
+    transition: background 150ms linear;
+}
+.back-arrow:hover{
+    background: linear-gradient(90deg, #00dd00 0%, #7eff8900  100%);
+}
+
+.title{
+    grid-column: 2/3;
+    align-self: center;
+    text-align: center;
+    margin: 0;
+    margin-right: 230px;
+    white-space: pre-line;
+}
+
+.selezione-tipo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
 .file-input{
     text-decoration: none;
     font-weight: 800;
-    font-size: 12px;
+    font-size: 18px;
     color: #000000;
     background: linear-gradient(90deg, #00fcca 0%, #3773ff 100%);
     padding: 10px 30px;
-    border: solid #212121 2px;
+    margin: 20px;
+
+    border: solid #000000 1px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     border-radius: 50px;
     transition : 835ms;
     transform: translateY(0);
     align-items: center;
     cursor: pointer;
-    text-transform: lowercase;
+    font-family: 'Poppins', sans-serif;
 }
 
 .form-submit{
@@ -25,18 +79,19 @@ body{
     color: #000000;
     background: linear-gradient(90deg, #7eff89 0%, #00dd00  100%);
     padding: 10px 30px;
-    border: solid #212121 2px;
+    margin-top: 20px;
+    border: solid #000000 1px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     border-radius: 50px;
     transition : 835ms;
     transform: translateY(0);
     align-items: center;
     cursor: pointer;
-    text-transform: lowercase;
 }
+
 .form-submit:hover{
     transition : 835ms;
     background: linear-gradient(90deg, #61ff6f 0%, #3cff3c  100%);
     color: #000000;
-    border: solid 2px #00044d;
+    border: solid 1px #000000;
 }

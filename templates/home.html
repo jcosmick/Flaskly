@@ -10,7 +10,9 @@
     
     <body>
         {% from "showGrafMenu.html" import showGrafMenu with context %}
-        <h1>Home</h1>
+        <div class="top-title">
+          <h1>Home</h1>
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
             <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-23" viewBox="0 0 40 40">
               <path d="M21.728 22.597c-2.308 2.1-5.374 3.38-8.74 3.38C5.815 25.977 0 20.162 0 12.987 0 5.816 5.815 0 12.988 0c7.174 0 12.99 5.815 12.99 12.988 0 3.366-1.28 6.433-3.38 8.74 1.943-1.516 4.76-1.376 6.542.404l9.41 9.41c1.934 1.934 1.928 5.074-.003 7.005-1.935 1.935-5.077 1.93-7.004.004l-9.41-9.41c-1.787-1.786-1.918-4.602-.405-6.543zm-8.74-.235c5.177 0 9.374-4.197 9.374-9.374 0-5.176-4.197-9.373-9.374-9.373-5.176 0-9.373 4.197-9.373 9.373 0 5.177 4.197 9.374 9.373 9.374zm11.687 4.975c-.732-.733-.735-1.917.005-2.657.735-.735 1.93-.732 2.657-.005l9.104 9.104c.733.73.736 1.916-.004 2.656-.735.735-1.93.73-2.657.005l-9.105-9.103z"
@@ -23,7 +25,7 @@
           
             <span class="searchbox sbx-custom">
             <div role="search" class="sbx-custom__wrapper">
-              <input type="search" name="search" id="ricerca" placeholder="Cerca..." autocomplete="off" required="required" class="sbx-custom__input ricerca bar" oninput="search(this.value)">
+              <input type="search" name="search" id="ricerca" placeholder="Cerca un grafico..." autocomplete="off" required="required" class="sbx-custom__input ricerca bar" oninput="search(this.value)">
               <button type="submit" title="Submit your search query." class="sbx-custom__submit">
                 <svg role="img" aria-label="Search">
                   <use xlink:href="#sbx-icon-search-23"></use>
@@ -49,6 +51,4 @@
             </div>
         </form>
     </body>
-    
-
 </html>

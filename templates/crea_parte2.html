@@ -8,7 +8,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     </head>
     <body onload="editRadioForm(['asseX','asseY1','asseY2'])">
-        <h1>Creazione grafico pt2</h1>
+        <div class="top-title">
+            <a href ="{{url_for('home')}}" class="back-arrow"><img src= "{{ url_for('static', filename='arrow__back.png') }}"/></a>
+            <h1 class="title">Creazione grafico</h1>
+        </div>
+        
         <form method="POST" action="" class="form" enctype="multipart/form-data">
             {{form.hidden_tag()}}
             <div class="div1">

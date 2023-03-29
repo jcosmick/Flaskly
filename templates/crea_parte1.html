@@ -6,14 +6,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1>Carica i dati</h1>
+        <div class="top-title">
+            <a href ="{{url_for('home')}}" class="back-arrow"><img src= "{{ url_for('static', filename='arrow__back.png') }}"/></a>
+            <h1 class="title">Carica i dati</h1>
+        </div>
         <div class="graphType">
-            <h3>Seleziona il tipo di grafico</h3>
+            
             <form method="POST" action="" enctype="multipart/form-data">
                 {{form.hidden_tag()}}
 
-                {{ form.graphType.label(class="form-control-label") }}
-                {{ form.graphType(class="form-control form-control-lg is-invalid")}}
+                <div class="selezione-tipo">
+                    <h3>Seleziona il tipo di grafico:</h3>
+                    {{ form.graphType(class="form-control form-control-lg is-invalid")}}
+                </div>
                 
                 <div class="CartesianForm">
                     {{form.data_file(class="file-input")}}

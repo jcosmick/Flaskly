@@ -44,9 +44,9 @@ def creation_part1():
 @app.route('/c2', methods=["GET", "POST"])
 def creation_part2():
     form = CreaGraph2()
-
+    if "messages" not in session:
+        return redirect("/home")
     filename = session['messages'][0]
-    graphType = session['messages'][1]
     df = pd.read_csv(UPLOAD_FOLDER+"/"+filename)
     colonne = df.columns.to_list()
 
@@ -73,10 +73,10 @@ def creation_part2():
                         "asseY2": form.asseY2.data,
                         "asseY2Data": asseY2Data,
                         "secondary": form.secondary.data,
-                        "color": [form.colorY1.data, form.colorY1.data]
+                        "color": [form.colorY1.data, form.colorY2.data]
                         }
                 #USER_DATA+"/"+session["username"]+"_"+get_random_string(4)+".json"
-        with open(USER_DATA+"/"+get_random_string(4)+".json", "w") as outfile:
+        with open(USER_DATA+"/"+get_random_string(NUMCARATTERI)+".json", "w") as outfile:
             json.dump(data_to_write, outfile)
         delete_file_from_path(UPLOAD_FOLDER +'/'+ filename)
         return redirect("/home")
@@ -142,7 +142,7 @@ def visualizza_grafico(file):
                                             jsonData["title"]),
                                 cls=plotly.utils.PlotlyJSONEncoder)
     
-    return render_template('visualizza.html', graphJSON = graphJSON)
+    return render_template('visualizza.html', graphJSON = graphJSON, titolo= jsonData["title"])
 
 @app.route('/d/<file>', methods=["GET", "POST"])
 def elimina_grafico(file):
@@ -154,7 +154,7 @@ def elimina_grafico(file):
 
 
 if __name__=='__main__':
-   app.run(debug=DEBUG)
+   app.run(host = "0.0.0.0",debug=DEBUG)
 
 # Siamo riusciti ad implementare i grafici, purtroppo quello a torta da ancora problemi, ed a visualizzarli salvando i dati in file json.
 # La cosa su cui dobbiamo lavorare è lo stile della pagina web.
